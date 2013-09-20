@@ -34,7 +34,12 @@
 			<version>${solr.lucene.version}</version>
 			<type>war</type>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-security</artifactId>
+            <version>7.6.8.v20121106</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -78,6 +83,11 @@
 					<archive>
 						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
 					</archive>
+                    <webResources>
+                        <resource>
+                            <directory>src/main/resources</directory>
+                        </resource>
+                    </webResources>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -158,6 +168,9 @@
 							javax.servlet,
 							javax.servlet.http,
 							javax.xml.parsers,
+                            org.eclipse.jetty.security,
+                            org.eclipse.jetty.plus.jaas,
+                            org.eclipse.jetty.security.authentication,
 							org.xml.sax,
 							org.w3c.dom,
 							javax.xml.xpath,
@@ -179,7 +192,7 @@
 							org.xml.sax.ext;resolution:=optional,
 							org.xml.sax.helpers;resolution:=optional,
 						</Import-Package>
-					</instructions>
+                    </instructions>
 				</configuration>
 			</plugin>
 		</plugins>
